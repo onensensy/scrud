@@ -1,6 +1,6 @@
 <?php
 
-namespace Sensy\Crud\View\Components;
+namespace Sensy\Scrud\View\Components;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;

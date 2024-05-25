@@ -1,6 +1,6 @@
 <?php
 
-namespace Sensy\Crud\Commands;
+namespace Sensy\Scrud\Commands;
 
 use App\Models\User;
 use Illuminate\Console\Command;

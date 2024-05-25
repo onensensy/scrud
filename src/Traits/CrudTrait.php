@@ -1,6 +1,6 @@
 <?php
 
-namespace Sensy\Crud\Traits;
+namespace Sensy\Scrud\Traits;
 
 use App\Models\SystemModule;
 use DirectoryIterator;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Sensy\Crud\Commands;
+namespace Sensy\Scrud\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;

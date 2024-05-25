@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Sensy\Crud\Traits\FileUploadTrait;
+use Sensy\Scrud\Traits\FileUploadTrait;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;

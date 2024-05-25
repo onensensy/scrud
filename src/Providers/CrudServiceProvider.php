@@ -1,17 +1,17 @@
 <?php
 
-namespace Sensy\Crud\Providers;
+namespace Sensy\Scrud\Providers;
 
 use App\Models\Menu;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Sensy\Crud\Commands\CreateUser;
-use Sensy\Crud\Commands\CrudScafold;
-use Sensy\Crud\Commands\Deploy;
-use Sensy\Crud\Commands\Extractor;
-use Sensy\Crud\Commands\ModuleScaffold;
+use Sensy\Scrud\Commands\CreateUser;
+use Sensy\Scrud\Commands\CrudScafold;
+use Sensy\Scrud\Commands\Deploy;
+use Sensy\Scrud\Commands\Extractor;
+use Sensy\Scrud\Commands\ModuleScaffold;
 
 class CrudServiceProvider extends ServiceProvider
 {
@@ -37,7 +37,7 @@ class CrudServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'scrud');
 
         # Components
-        Blade::componentNamespace('Sensy\\Crud\\View\\Components', 'scrud');
+        Blade::componentNamespace('Sensy\\Scrud\\View\\Components', 'scrud');
 
         # Loading migrations
         // $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');

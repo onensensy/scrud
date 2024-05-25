@@ -1,6 +1,6 @@
 <?php
 
-namespace Sensy\Crud\Providers;
+namespace Sensy\Scrud\Providers;
 
 use App\Models\Menu;
 use Illuminate\Support\Facades\View;

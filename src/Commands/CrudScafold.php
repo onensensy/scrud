@@ -1,12 +1,12 @@
 <?php
 
-namespace Sensy\Crud\Commands;
+namespace Sensy\Scrud\Commands;
 
 ##REQUIRED
 use App\Models\Menu;
 use App\Models\SubMenu;
 use App\Models\SystemModule;
-use Sensy\Crud\Traits\CrudTrait;
+use Sensy\Scrud\Traits\CrudTrait;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 ##REQUIRED

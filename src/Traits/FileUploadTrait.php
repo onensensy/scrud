@@ -1,6 +1,6 @@
 <?php
 
-namespace Sensy\Crud\Traits;
+namespace Sensy\Scrud\Traits;
 
 use Illuminate\Http\Request;
 
