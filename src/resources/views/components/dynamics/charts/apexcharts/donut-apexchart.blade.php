@@ -1,0 +1,59 @@
+@props([
+    'chartId',
+    'series',
+    'labels',
+    'colors',
+    'chartType',
+    'height' => 320,
+    'legend_show' => true,
+    'legend_position' => 'bottom',
+    'legend_horizontalAlign' => 'center',
+    'legend_verticalAlign' => 'middle',
+    'legend_floating' => false,
+    'legend_fontSize' => '14px',
+    'legend_offsetX' => '',
+])
+
+<div id="{{ $chartId }}"></div>
+
+@push('scripts')
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // var colors = getChartColorsArray("donut_chart");
+            var options = {
+                chart: {
+                    height: "{{ $height }}",
+                    type: "{{ $chartType }}",
+                    id: "{{ $chartId }}"
+                },
+                series: {!! json_encode($series) !!},
+                labels: {!! json_encode($labels) !!},
+                colors: {!! json_encode($colors) !!},
+                legend: {
+                    show: "{{ $legend_show }}",
+                    position: "{{ $legend_position }}",
+                    horizontalAlign: "{{ $legend_horizontalAlign }}",
+                    verticalAlign: "{{ $legend_verticalAlign }}",
+                    floating: "{{ $legend_floating }}",
+                    fontSize: "{{ $legend_fontSize }}",
+                    offsetX: "{{ $legend_offsetX }}",
+                },
+                responsive: [{
+                    breakpoint: 600,
+                    options: {
+                        chart: {
+                            height: 240,
+                        },
+                        legend: {
+                            show: false,
+                        },
+                    },
+                }],
+            };
+
+            // Render chart
+            var chart = new ApexCharts(document.querySelector("#{{ $chartId }}"), options);
+            chart.render();
+        });
+    </script>
+@endpush

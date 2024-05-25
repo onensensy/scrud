@@ -1,0 +1,13 @@
+
+MAIL_MAILER=smtp
+MAIL_HOST=mail.epicleug.com
+MAIL_PORT=465
+MAIL_USERNAME=tesr@kiookonsult.com
+MAIL_PASSWORD=5*^5O5-M(0@P
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS="kiooconnect@epicleug.com"
+MAIL_TO_ADDRESS="onen.sensy@epicleug.com"
+MAIL_FROM_NAME="NANSANA DIVISION WEBSITE"
+
+DEVELOPER_WEBSITE='https://epicleug.com'
+DEVELOPER_NAME='EPICLE SMC LTD'
