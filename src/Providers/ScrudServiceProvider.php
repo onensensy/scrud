@@ -13,7 +13,7 @@ use Sensy\Scrud\Commands\Deploy;
 use Sensy\Scrud\Commands\Extractor;
 use Sensy\Scrud\Commands\ModuleScaffold;
 
-class CrudServiceProvider extends ServiceProvider
+class ScrudServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
