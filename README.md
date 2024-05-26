@@ -65,7 +65,7 @@ php artisan s-crud:create-user {name} {email} {password} {--role=}
 ```
 ### `s-crud:extractor`
 
-Extract database data to be synced.
+Extract database data to be synced/Deployed.
 
 ```bash
 php artisan s-crud:extractor
