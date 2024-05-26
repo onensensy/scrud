@@ -23,7 +23,7 @@ To install the package, use Composer:
 composer require sensy/scrud
 ```
 
-After installing, add the service provider in your providers array in your `config.php` file. 
+After installing, add the service provider in your providers array in your `app.php` file. 
 
 ```php
 Sensy\Scrud\Providers\ScrudServiceProvider::class,
