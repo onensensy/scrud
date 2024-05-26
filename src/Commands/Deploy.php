@@ -12,7 +12,7 @@ class Deploy extends Command
      *
      * @var string
      */
-    protected $signature = 'sensy:deploy {--live : Deploying to live}';
+    protected $signature = 's-crud:deploy {--live : Deploying to live}';
 
     /**
      * The console command description.
@@ -59,8 +59,8 @@ class Deploy extends Command
         {
             $this->call('db:wipe');
             $this->call('migrate');
-            $this->call('sensy:crud');
-            $this->call('sensy:create-user', ['name' => $name, 'email' => $email, '--password' => $password]);
+            $this->call('s-crud:crud');
+            $this->call('s-crud:create-user', ['name' => $name, 'email' => $email, '--password' => $password]);
         }
 
 

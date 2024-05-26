@@ -17,7 +17,7 @@ class ModuleScaffold extends Command
      *
      * @var string
      */
-    protected $signature = 'sensy:setup
+    protected $signature = 's-crud:setup
                             {class}
                             {--m}
                             {--dir=}

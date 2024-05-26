@@ -14,7 +14,7 @@ class Extractor extends Command
      *
      * @var string
      */
-    protected $signature = 'sensy:extractor {--tables=}';
+    protected $signature = 's-crud:extractor {--tables=}';
 
     /**
      * The console command description.

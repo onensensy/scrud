@@ -13,7 +13,7 @@ class CreateUser extends Command
      *
      * @var string
      */
-    protected $signature = 'sensy:create-user
+    protected $signature = 's-crud:create-user
                             {name : The name of the user}
                             {email : The email of the user}
                             {--password= : The password of the user}

@@ -57,7 +57,7 @@ class CrudScafold extends Command
      *
      * @var string
      */
-    protected $signature = 'sensy:crud
+    protected $signature = 's-crud:crud
                             {--dir=}
                             {--full}
                             {--class=}
@@ -979,7 +979,7 @@ class CrudScafold extends Command
             if (!$this->confirm("Generate System Module dependencies?", true))
                 return 0;
 
-            $this->call('sensy:setup', ['class' => 'SystemModule', "--m" => true]);
+            $this->call('s-crud:setup', ['class' => 'SystemModule', "--m" => true]);
             $this->call('migrate');
 
             $this->generateController('SystemModule');
@@ -996,7 +996,7 @@ class CrudScafold extends Command
             if (!$this->confirm("Generate Menu dependencies?", true))
                 return 0;
 
-            $this->call('sensy:setup', ['class' => 'Menu', "--m" => true]);
+            $this->call('s-crud:setup', ['class' => 'Menu', "--m" => true]);
             $this->call('migrate');
         }
 
@@ -1010,7 +1010,7 @@ class CrudScafold extends Command
                 return 0;
 
 
-            $this->call('sensy:setup', ['class' => 'SubMenu', "--m" => true]);
+            $this->call('s-crud:setup', ['class' => 'SubMenu', "--m" => true]);
             $this->call('migrate');
         }
 
