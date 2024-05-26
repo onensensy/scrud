@@ -1,6 +1,6 @@
 {
 	"name": "sensy/scrud",
-	"description": "CRUD Scaffold for Laravel by sensy",
+	"description": "CRUD Starterkit for Laravel by sensy",
 	"license": "proprietary",
 	"autoload": {
 		"psr-4": {
