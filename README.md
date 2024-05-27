@@ -16,6 +16,9 @@
 - Supports basic and advanced CRUD operations
 
 ## Installation
+The first step is to follow and make sure you complete installation of jetstream from their official website.
+
+> NOTE: TEAMS is not yet supported so please dont use teams.
 
 To install the package, use Composer:
 
