@@ -31,6 +31,8 @@ class ScrudServiceProvider extends ServiceProvider
         // $this->app->register(ViewServiceProvider::class);
 
         # Loading routes
+
+        // $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
 
         # Loading views
@@ -72,5 +74,6 @@ class ScrudServiceProvider extends ServiceProvider
     public function loadAssets()
     {
         $this->publishes([__DIR__ . '/../public' => public_path('/')], 'scrud');
+        $this->publishes([__DIR__ . '/../routes/scrud.php' => base_path('/routes')], 'scrud');
     }
 }

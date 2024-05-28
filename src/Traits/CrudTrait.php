@@ -15,7 +15,7 @@ trait CrudTrait
     /** @param array $exclude_models  Model name */
     protected $exclude_models = ['Session', 'PasswordResetToken'];
 
-    protected $routePath = 'routes/web.php';
+    protected $routePath = 'routes/scrud.php';
 
     /**
      * Generate model
