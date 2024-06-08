@@ -31,6 +31,11 @@ After installing, add the service provider in your providers array in your `app.
 ```php
 Sensy\Scrud\Providers\ScrudServiceProvider::class,
 ```
+Then run initial installations
+
+```bash
+php artisan s-crud:install
+```
 
 ## Available Commands
 
