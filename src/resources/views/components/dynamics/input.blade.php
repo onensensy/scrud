@@ -15,7 +15,7 @@
     @endif
 </div>
 @error($modelBind)
-    <p class="custom-error-message">
+    <p class="invalid-feedback">
         {{ $message }}
     </p>
 @enderror

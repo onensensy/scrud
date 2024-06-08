@@ -19,7 +19,7 @@
             @endforeach
             <hr class="my-2">
             @if ($errors->any())
-                <div class="custom-error-message">
+                <div class="text-danger">
                     <ul class="mx-0">
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>

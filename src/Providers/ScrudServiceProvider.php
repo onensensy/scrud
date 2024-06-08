@@ -3,6 +3,7 @@
 namespace Sensy\Scrud\Providers;
 
 use App\Models\Menu;
+use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
@@ -11,6 +12,7 @@ use Sensy\Scrud\Commands\CreateUser;
 use Sensy\Scrud\Commands\CrudScafold;
 use Sensy\Scrud\Commands\Deploy;
 use Sensy\Scrud\Commands\Extractor;
+use Sensy\Scrud\Commands\Install;
 use Sensy\Scrud\Commands\ModuleScaffold;
 
 class ScrudServiceProvider extends ServiceProvider
@@ -18,7 +20,7 @@ class ScrudServiceProvider extends ServiceProvider
     /**
      * Register services.
      */
-    public function register(): void
+    public function register() : void
     {
         $this->app->register(ViewServiceProvider::class);
     }
@@ -26,40 +28,35 @@ class ScrudServiceProvider extends ServiceProvider
     /**
      * Bootstrap services.
      */
-    public function boot(): void
+    public function boot() : void
     {
-        // $this->app->register(ViewServiceProvider::class);
+        AboutCommand::add('Scrud by Sensy', fn () => ['Version' => '1.0.5']);
+
 
         # Loading routes
-
-        // $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
-        $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
+        if (file_exists(base_path('routes/scrud.php')))
+            $this->loadRoutesFrom(base_path('routes/scrud.php'));
+        $this->loadRoutesFrom(__DIR__ . '/../routes/scrud.php');
 
         # Loading views
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'scrud');
+        if (file_exists(base_path('resources/views/scrud'))) {
+            # Components
 
-        # Components
-        Blade::componentNamespace('Sensy\\Scrud\\View\\Components', 'scrud');
+            $this->loadViewsFrom(base_path('resources/views/scrud'), 'scrud');
+            Blade::componentNamespace('App\\Scrud\\View', 'scrud');
+        } else {
+            # Components
+            Blade::componentNamespace('Sensy\\Scrud\\View\\Components', 'scrud');
+            $this->loadViewsFrom(__DIR__ . '/../resources/views', 'scrud');
+        }
 
         # Loading migrations
         // $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
-        #Components
-        $this->loadViewsFrom(__DIR__ . '/../components', 'CrudComponent');
-
+        $layout_path = app_path('/Scrud/View/AdminLayout.php');
 
         # Loading assets(Publishable assets)
-        // php artisan vendor:publish --tag=scrud --force
-        $this->loadAssets();
-        // // php artisan vendor:publish --tag=inspire-config --force
-        // $this->publishes([
-        //     __DIR__ . '/../config/inspire.php' => config_path('inspire.php'),
-        // ], 'inspire-config');
-
-        // // php artisan vendor:publish --tag=inspire-views --force
-        // $this->publishes([
-        //     __DIR__ . '/../views' => resource_path('views/vendor/inspire'),
-        // ], 'inspire-views');
+        $this->loadAssets($layout_path);
 
         # Loading Commands
         $this->commands([
@@ -67,13 +64,22 @@ class ScrudServiceProvider extends ServiceProvider
             CreateUser::class,
             Deploy::class,
             Extractor::class,
-            ModuleScaffold::class
+            ModuleScaffold::class,
+            Install::class
         ]);
     }
 
-    public function loadAssets()
+    public function loadAssets($layout_path)
     {
+
         $this->publishes([__DIR__ . '/../public' => public_path('/')], 'scrud');
-        $this->publishes([__DIR__ . '/../routes/scrud.php' => base_path('/routes')], 'scrud');
+        $this->publishes([__DIR__ . '/../routes/scrud.php' => base_path('/routes/scrud.php')], 'scrud');
+        if (! file_exists(base_path('/resources/views/scrud/')))
+            $this->publishes([__DIR__ . '/../resources/views' => base_path('/resources/views/scrud/')], 'scrud');
+        $this->publishes([__DIR__ . '/../View/Components/AdminLayout.php' => $layout_path], 'scrud');
+
+        // $this->publishes([
+        //     __DIR__ . '/../config/scrud.php' => config_path('scrud.php'),
+        // ], 'scrud');
     }
 }

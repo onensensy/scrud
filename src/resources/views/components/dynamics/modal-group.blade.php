@@ -1,6 +1,6 @@
 @props(['component', 'hasAdd', 'hasShow', 'hasDelete', 'service'])
 <div>
-    @if ($hasAdd)
+    @if ($hasAdd || $hasEdit)
         @livewire($component . '-add', ['target' => 'add', 'service' => $service])
     @endif
 

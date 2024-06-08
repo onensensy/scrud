@@ -3,10 +3,10 @@
         allowMultiple: {{ isset($attributes['multiple']) ? 'true' : 'false' }},
         server: {
             process: (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
-                @this.upload('{{ $attributes['wire:model.live'] }}', file, load, error, progress)
+                @this.upload('{{ $attributes['wire:model'] }}', file, load, error, progress)
             },
             revert: (filename, load) => {
-                @this.removeUpload('{{ $attributes['wire:model.live'] }}', filename, load)
+                @this.removeUpload('{{ $attributes['wire:model'] }}', filename, load)
             },
         },
     });
@@ -15,4 +15,5 @@
     });
 }">
     <input type="file" x-ref="input" {!! isset($attributes['accept']) ? 'accept="' . $attributes['accept'] . '"' : '' !!}>
+
 </div>

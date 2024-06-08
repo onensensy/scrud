@@ -16,6 +16,10 @@
 
 <div id="{{ $chartId }}"></div>
 
+@pushOnce('scripts')
+    <script src="{{ URL::asset('/build/libs/apexcharts/apexcharts.min.js') }}"></script>
+@endPushOnce
+
 @push('scripts')
     <script>
         document.addEventListener("DOMContentLoaded", function() {

@@ -13,8 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('dashboard', function ()
-{
+Route::get('dashboard', function () {
     return redirect('/admin/dashboard');
 });
 
@@ -23,21 +22,20 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
-])->group(function ()
-{
+])->group(function () {
 
     // Route for admin panel
-    Route::group(['prefix' => 'admin'], function ()
-    {
-        Route::get('dashboard', function ()
-        {
+    Route::group(['prefix' => 'admin'], function () {
+        Route::get('dashboard', function () {
             return view('scrud::pages.backend.dashboard');
         })->name('dashboard');
 
-        Route::namespace('App\Http\Controllers')->group(function ()
-        {
+        Route::namespace('App\Http\Controllers')->group(function () {
             Route::get('profile', 'UserController@profile')->name('profile');
-            ##--GENERATED ROUTES--##
+            // ##--GENERATED ROUTES--##
+            // Route::resource('testings', 'TestingController');
+            // Route::resource('testins', 'TestinController');
+            // Route::resource('tests', 'TestController');
 
             Route::resource('roles', 'RoleController');
             Route::resource('team-invitations', 'TeamInvitationController');
