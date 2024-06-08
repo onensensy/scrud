@@ -19,7 +19,7 @@
 		"laravel/framework": "^8.0|^9.0|^10.0|^11,0",
 		"livewire/livewire": "^3.0",
 		"spatie/laravel-permission": "^5.0|^6.0",
-		"laravel/jetstream": "^2.0"
+		"laravel/jetstream": "^2.0|^3.0|^4.0"
 	},
 	"extra": {
 		"laravel": {
