@@ -32,10 +32,7 @@ Route::middleware([
 
         Route::namespace('App\Http\Controllers')->group(function () {
             Route::get('profile', 'UserController@profile')->name('profile');
-            // ##--GENERATED ROUTES--##
-            // Route::resource('testings', 'TestingController');
-            // Route::resource('testins', 'TestinController');
-            // Route::resource('tests', 'TestController');
+            ##--GENERATED ROUTES--##
 
             Route::resource('roles', 'RoleController');
             Route::resource('team-invitations', 'TeamInvitationController');
