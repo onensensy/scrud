@@ -1,7 +1,7 @@
 @props(['audits'])
 {{-- @dd($audits) --}}
 <div class="row scrollable-container" style="max-height: 230px; overflow: auto;">
-    <x-dynamics.table :paginate="false">
+    <x-scrud::dynamics.table :paginate="false">
         <x-slot name="thead">
             <th>No.</th>
             <th>Role</th>
@@ -25,5 +25,5 @@
                 </tr>
             @endforeach
         </x-slot>
-    </x-dynamics.table>
+    </x-scrud::dynamics.table>
 </div>

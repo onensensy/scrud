@@ -34,12 +34,10 @@ class ViewServiceProvider extends ServiceProvider
         ## Load Backend Sidebar Menus
         View::composer(
             ['scrud::components.backend.layouts.sidebar'],
-            function ($view)
-            {
+            function ($view) {
                 #Loop modules
                 #Get menus
-                $menus = Menu::whereHas('systemModule', function ($query)
-                {
+                $menus = Menu::whereHas('systemModule', function ($query) {
                     $query->where('is_active', true);
                 })->get();
 

@@ -4,6 +4,7 @@ namespace Sensy\Scrud\Commands;
 
 use App\Models\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 
 class CreateUser extends Command
@@ -43,37 +44,34 @@ class CreateUser extends Command
             'password' => bcrypt($password), #Encrypt the password
         ];
 
-        try
-        {
-
+        DB::beginTransaction();
+        try {
             #Create the user
             $user = User::create($userData);
-        }
-        catch (\Exception $e)
-        {
+            #If a role is provided, find the role by name and associate it with the user
+            if ($roleName) {
+                $role = Role::where('name', $roleName)->first();
+                if (!$role) {
+                    $this->error("Role '{$roleName}' not found.");
+                    #prompt to  select a role
+                    $roles = Role::all()->pluck('name')->toArray();
+                    $roleName = $this->choice('Select a role', $roles);
+                    $role = Role::where('name', $roleName)->first();
+                    if (!$role) {
+                        $this->error("Selected role '{$roleName}' not found. Please select a valid role.");
+                        #rollback
+                        DB::rollBack();
+                        return $this->warn('Rolled back');
+                    }
+                } else {
+                    $user->assignRole($roleName);
+                }
+            }
+            DB::commit();
+            $this->info('User created successfully.');
+        } catch (\Exception $e) {
+            DB::rollBack();
             $this->error($e->getMessage());
         }
-        try
-        {
-            #If a role is provided, find the role by name and associate it with the user
-            if ($roleName)
-            {
-                $role = Role::where('name', $roleName)->first();
-
-                if (!$role)
-                {
-                    $this->error("Role '{$roleName}' not found.");
-                    return 1; #Return error status code
-                }
-                else
-                    $user->assignRole($roleName);
-            }
-        }
-        catch (\Exception)
-        {
-            $this->error("Something Went wrong with roles.");
-        }
-
-        $this->info('User created successfully.');
     }
 }

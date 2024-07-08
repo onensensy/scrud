@@ -1,4 +1,4 @@
-@props(['field', 'col' => 4])
+@props(['field', 'col' => 4, 'disabled' => false])
 @php
     # Check if number is updated after verification and reset cerification
     $verification_sent = $field . '_verification_sent';
@@ -11,18 +11,19 @@
     <div class="form-group">
         <label for="{{ $field }}">{{ camel_to_sentence($field) }}</label>
         <div class="input-group">
-            <input type="text"
+            <input type="text" @disabled($disabled)
                 class="form-control @error($field) is-invalid @enderror @if ($this->$verified) is-valid @endif"
                 wire:model.live="{{ $field }}" placeholder="Enter {{ camel_to_sentence($field) }}" required>
 
             @if (!$this->$verified)
                 @if ($this->$verification_sent)
-                    <input type="text" class="form-control @error($verification) is-invalid @enderror"
+                    <input type="text" @disabled($disabled)
+                        class="form-control @error($verification) is-invalid @enderror"
                         wire:model.live="{{ $verification }}" placeholder="Enter OTP" required>
                 @endif
 
                 <div class="input-group-append">
-                    <button class="btn btn-outline-primary" type="button"
+                    <button @disabled($disabled) class="btn btn-outline-primary" type="button"
                         @if (!$this->$verification_sent) wire:click="sendVerificationCode('{{ $field }}')" @else wire:click="confirmCode('{{ $field }}')" @endif>
                         <i class="bx bx-check"
                             @if (!$this->$verification_sent) wire:target="sendVerificationCode('{{ $field }}')"  @else wire:target="confirmCode('{{ $field }}')" @endif

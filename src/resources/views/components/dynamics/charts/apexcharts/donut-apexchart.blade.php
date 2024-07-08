@@ -12,6 +12,8 @@
     'legend_floating' => false,
     'legend_fontSize' => '14px',
     'legend_offsetX' => '',
+    'hasDataLabels' => false,
+    'hasTooltip' => true,
 ])
 
 <div id="{{ $chartId }}"></div>
@@ -41,6 +43,21 @@
                     floating: "{{ $legend_floating }}",
                     fontSize: "{{ $legend_fontSize }}",
                     offsetX: "{{ $legend_offsetX }}",
+                },
+                tooltip: {
+                    enabled: @json($hasTooltip),
+                    y: {
+                        formatter: function(val) {
+                            return val;
+                        }
+                    }
+                },
+                dataLabels: {
+                    enabled: @json($hasDataLabels),
+                    formatter: function(val, opts) {
+                        return opts.w.globals.labels[opts
+                            .seriesIndex];
+                    }
                 },
                 responsive: [{
                     breakpoint: 600,

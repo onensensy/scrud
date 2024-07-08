@@ -1,13 +1,27 @@
 @props(['definitions', 'entry'])
-{{-- @dd($entry) --}}
+{{-- @dd($this->change_object) --}}
 <div>
-    <h4 class="card-title mb-5">
+    <h4 class="card-title mb-1">
         <span class="badge bg-primary">{{ strtoupper($definitions->first()->workflow->action) }}</span>
         WORKFLOW
     </h4>
-    <div class="">
-        <ul class="verti-timeline list-unstyled">
+    <hr class="border-bottom my-1">
+    @if (!is_null($this->change_object))
+        {{-- <span class="badge rounded-pill bg-light">
+            STATUS: {{ $this->change_object->first()->workflow_status }}</span><br>
+        <span class="badge rounded-pill bg-light">STEP:
+            {{ $this->change_object->first()->workflowDefinition->step_number }}</span>
+        <span class="badge rounded-pill bg-light">ROLE:
+            {{ $this->change_object->first()->workflowDefinition->role->name }}</span> --}}
+        <span class="badge rounded-pill bg-light">
+            Change in progress at step
+            {{ $this->change_object->first()->workflowDefinition->step_number }},{{ $this->change_object->first()->workflowDefinition->role->name }}.
+        </span>
+        <hr class="border-bottom my-1">
+    @endif
 
+    <div class="mt-4">
+        <ul class="verti-timeline list-unstyled">
             @foreach ($definitions as $definition)
                 @php
                     $is_completed = false;
