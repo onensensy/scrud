@@ -28,14 +28,18 @@ class Install extends Command
     {
         $this->layout_path = app_path('/Scrud/View/AdminLayout.php');
 
-        $this->call('vendor:publish', ['--tag' => 'scrud']);
+        $this->call('vendor:publish', ['--tag' => 'scrud', '--force' => true]);
 
-        # Rename the namespace
-        if (file_exists($this->layout_path)) {
-            $layout = file_get_contents($this->layout_path);
-            $newlayout = str_replace('Sensy\\Scrud\\View\\Components', 'App\\Scrud\\View', $layout);
-            file_put_contents($this->layout_path, $newlayout);
-        }
+//        # Rename the namespace
+//        foreach (glob(__DIR__ . '/../View/Components/*.php') as $file) {
+//            //get file
+//            # open file
+//            $file_content = file_get_contents($file);
+//            //replace namespace
+//            $file_content = str_replace('Sensy\Scrud\View\Components', 'App\Scrud\View', $file_content);
+//            //save file
+//            file_put_contents($layout_path . '/' . basename($file), $file_content);
+//        }
 
     }
 }

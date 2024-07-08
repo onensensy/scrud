@@ -30,13 +30,26 @@ Route::middleware([
             return view('pages.backend.dashboard');
         })->name('dashboard');
 
-        Route::
-                namespace('App\Http\Controllers')->group(function () {
-                    Route::get('profile', 'UserController@profile')->name('profile');
-                    ##--GENERATED ROUTES--##
+        Route::namespace('App\Http\Controllers')->group(function () {
+             Route::get('profile', 'UserController@profile')->name('profile');
+             ##--GENERATED ROUTES--##
 
-                });
+
+             ## IMPERSONATIONS ##
+             Route::middleware(['impersonate'])->group(function () {
+                 Route::get('/{user}/impersonate', [\Sensy\Scrud\app\Controller\ImpersonateController::class, 'impersonate'])->name('users.impersonate');
+             });
+             Route::get('/leave-impersonate', [\Sensy\Scrud\app\Controller\ImpersonateController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
+             ## IMPERSONATIONS ##
+
+             Route::resource('roles', 'RoleController');
+             Route::resource('team-invitations', 'TeamInvitationController');
+             Route::resource('teams', 'TeamController');
+             Route::resource('sub-menus', 'SubMenuController');
+             Route::resource('menus', 'MenuController');
+             Route::resource('system-modules', 'SystemModuleController');
+             Route::resource('users', 'UserController');
+        });
     });
-
 });
 

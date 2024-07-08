@@ -1,7 +1,6 @@
-<x-scrud::guest-layout>
+<x-scrud::backend.guest-layout>
     @slot('title','Login')
     <div class="card mb-3">
-        {{--        <x-validation-errors class="mb-4"/>--}}
         <div class="card-body">
             <div class="pt-4 pb-2">
                 <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
@@ -20,8 +19,9 @@
                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                        <div class="invalid-feedback">Please enter your username.</div>
-                        @enderror
+                        @else
+                            <div class="invalid-feedback">Please enter your username.</div>
+                            @enderror
                     </div>
                 </div>
 
@@ -60,4 +60,4 @@
         </div>
     </div>
 
-</x-scrud::guest-layout>
+</x-scrud::backend.guest-layout>

@@ -1,6 +1,7 @@
 ## Sensy/Scrud
 
-**Sensy/Scrud** is a Laravel package that provides a CRUD (Create, Read, Update, Delete) starter kit. It helps you quickly scaffold CRUD operations for your models, making it easier to build and maintain your Laravel applications.
+**Sensy/Scrud** is a Laravel package that provides a CRUD (Create, Read, Update, Delete) starter kit. It helps you
+quickly scaffold CRUD operations for your models, making it easier to build and maintain your Laravel applications.
 
 ### Requirements
 
@@ -37,7 +38,7 @@ Sensy\Scrud\Providers\ScrudServiceProvider::class,
 
 Then run initial installations
 
-```bash
+```bash****
 php artisan s-crud:install
 ```
 
@@ -142,9 +143,16 @@ php artisan s-crud:crud Product
 
 This will generate the necessary controller, views, and routes to manage products in your application.
 
+## Other Assets
+
+### Logo
+
+To modify the logo, replace the file `public/backend/assets/img/logo.png`
+
 ## Contributing
 
-Thank you for considering contributing to Sensy/Scrud! Please read the [CONTRIBUTING.md](CONTRIBUTING.md) file for details on our code of conduct and the process for submitting pull requests.
+Thank you for considering contributing to Sensy/Scrud! Please read the [CONTRIBUTING.md](CONTRIBUTING.md) file for
+details on our code of conduct and the process for submitting pull requests.
 
 ## License
 
@@ -158,7 +166,7 @@ Sensy/Scrud is open-source software licensed under the [MIT license](LICENSE.md)
 ### TODO
 
 - Paginations on views
-- Enhane Logging
+- Enhance Logging
 - Add requirement (iseed)
 - Decimal Validation rule enhancement
 - Login Page
@@ -170,4 +178,5 @@ Sensy/Scrud is open-source software licensed under the [MIT license](LICENSE.md)
 - Menu Search
 - Configs (Input driver)
 - File input locally
-- Dismissable Success/Error messages
+- Disable Success/Error messages
+- Add helper into the package
