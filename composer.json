@@ -29,7 +29,7 @@
         "laravel": {
             "providers": [
                 "Sensy\\Scrud\\Providers\\ViewServiceProvider",
-                "Lab404\\Impersonate\\ImpersonateServiceProvider::class"
+                "Lab404\\Impersonate\\ImpersonateServiceProvider"
             ]
         }
     }
