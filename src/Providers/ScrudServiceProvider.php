@@ -34,6 +34,8 @@ class ScrudServiceProvider extends ServiceProvider
 
         // Paginate with bootstrap instead o tailwind
         \Illuminate\Pagination\Paginator::useBootstrap();
+        Blade::component('scrud::guest-layout', \Sensy\Scrud\View\Components\GuestLayout::class);
+        Blade::component('scrud::admin-layout', \Sensy\Scrud\View\Components\AdminLayout::class);
 
     }
 
@@ -50,16 +52,17 @@ class ScrudServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        AboutCommand::add('Scrud by Sensy', fn() => ['Version' => '1.0.5']);
+        AboutCommand::add('Scrud by Sensy', fn () => ['Version' => '1.0.5']);
 
         //Middlewares
         $this->app['router']->aliasMiddleware('impersonate', ImpersonatorMiddleware::class);
 
         // Loading routes
-        if (file_exists(base_path('routes/scrud.php')))
+        if (file_exists(base_path('routes/scrud.php'))) {
             $this->loadRoutesFrom(base_path('routes/scrud.php'));
+        }
 
-        $this->loadRoutesFrom(__DIR__ . '/../routes/scrud.php');
+        $this->loadRoutesFrom(__DIR__.'/../routes/scrud.php');
 
         // Loading views
         if (file_exists(base_path('resources/views/scrud'))) {
@@ -69,11 +72,11 @@ class ScrudServiceProvider extends ServiceProvider
         } else {
             // Components
             Blade::componentNamespace('Sensy\\Scrud\\View\\Components', 'scrud');
-            $this->loadViewsFrom(__DIR__ . '/../resources/views', 'scrud');
+            $this->loadViewsFrom(__DIR__.'/../resources/views', 'scrud');
         }
 
         // Loading migrations
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
         // Loading Configs
         //####
@@ -97,27 +100,27 @@ class ScrudServiceProvider extends ServiceProvider
     public function loadAssets($layout_path)
     {
 
-        $this->publishes([__DIR__ . '/../public' => public_path('/')], 'scrud');
-        $this->publishes([__DIR__ . '/../routes/scrud.php' => base_path('/routes/scrud.php')], 'scrud');
-        if (!file_exists(base_path('/resources/views/scrud/'))) {
-            $this->publishes([__DIR__ . '/../resources/views' => base_path('/resources/views/scrud/')], 'scrud');
+        $this->publishes([__DIR__.'/../public' => public_path('/')], 'scrud');
+        $this->publishes([__DIR__.'/../routes/scrud.php' => base_path('/routes/scrud.php')], 'scrud');
+        if (! file_exists(base_path('/resources/views/scrud/'))) {
+            $this->publishes([__DIR__.'/../resources/views' => base_path('/resources/views/scrud/')], 'scrud');
         }
-        $this->publishes([__DIR__ . '/../View/Components' => $layout_path], 'scrud');
+        $this->publishes([__DIR__.'/../View/Components' => $layout_path], 'scrud');
 
-//        foreach (glob(__DIR__ . '/../View/Components/*.php') as $file) {
-//            //get file
-//            # open file
-//            $file_content = file_get_contents($file);
-//            //replace namespace
-//            $file_content = str_replace('Sensy\Scrud\View\Components', 'App\Scrud\View', $file_content);
-//            //save file
-//            file_put_contents($layout_path . '/' . basename($file), $file_content);
-//        }
+        //        foreach (glob(__DIR__ . '/../View/Components/*.php') as $file) {
+        //            //get file
+        //            # open file
+        //            $file_content = file_get_contents($file);
+        //            //replace namespace
+        //            $file_content = str_replace('Sensy\Scrud\View\Components', 'App\Scrud\View', $file_content);
+        //            //save file
+        //            file_put_contents($layout_path . '/' . basename($file), $file_content);
+        //        }
 
-//        echo "Overriding Auth Views\n";
-#delete the auth views
+        //        echo "Overriding Auth Views\n";
+        //delete the auth views
 
-        $this->publishes([__DIR__ . '/../resources/views/auth' => resource_path('views/auth')], 'scrud');
+        $this->publishes([__DIR__.'/../resources/views/auth' => resource_path('views/auth')], 'scrud');
 
         // $this->publishes([
         //     __DIR__ . '/../config/scrud.php' => config_path('scrud.php'),
@@ -126,11 +129,11 @@ class ScrudServiceProvider extends ServiceProvider
 
     public function deleteDirectory($dir)
     {
-        if (!file_exists($dir)) {
+        if (! file_exists($dir)) {
             return true;
         }
 
-        if (!is_dir($dir)) {
+        if (! is_dir($dir)) {
             return unlink($dir);
         }
 
@@ -139,7 +142,7 @@ class ScrudServiceProvider extends ServiceProvider
                 continue;
             }
 
-            if (!$this->deleteDirectory($dir . DIRECTORY_SEPARATOR . $item)) {
+            if (! $this->deleteDirectory($dir.DIRECTORY_SEPARATOR.$item)) {
                 return false;
             }
 

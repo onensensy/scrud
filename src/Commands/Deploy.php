@@ -26,27 +26,25 @@ class Deploy extends Command
      */
     public function handle()
     {
-        $name = "Maintainer";
-        $email = "maintainer@sensy.com";
+        $name = 'Maintainer';
+        $email = 'maintainer@sensy.com';
         $password = "SECRET@2024'";
 
-
-        if ($this->option('live'))
-        {
+        if ($this->option('live')) {
             $this->line('');
             $this->warn('Deploying to live...');
             $this->line('');
 
-            #Wipe on live
+            //Wipe on live
             $this->call('db:wipe');
 
-            #Migrate on live
+            //Migrate on live
             $this->call('migrate');
 
-            #Seed on live
+            //Seed on live
             $this->call('db:seed');
 
-            #CleanUp
+            //CleanUp
             $this->info('--------------');
             $this->info('Cleaning up...');
             $this->cleanUp();
@@ -54,21 +52,18 @@ class Deploy extends Command
             $this->info('');
             $this->info('Clean up Complete...');
             $this->info('--------------------');
-        }
-        else
-        {
+        } else {
             $this->call('db:wipe');
             $this->call('migrate');
-            $this->call('s-crud:crud');
+            $this->call('s-crud:crud', ['--p' => true, '--menus' => true]);
             $this->call('s-crud:create-user', ['name' => $name, 'email' => $email, '--password' => $password]);
         }
 
-
         $this->info('');
         $this->info('Scafold Successfull!');
-        $this->info('Maintainer User:       ' . $name);
-        $this->info('Maintainer email:      ' . $email);
-        $this->info('Maintainer Password:   ' . $password);
+        $this->info('Maintainer User:       '.$name);
+        $this->info('Maintainer email:      '.$email);
+        $this->info('Maintainer Password:   '.$password);
         $this->info('');
     }
 
@@ -78,18 +73,14 @@ class Deploy extends Command
 
         dd($directories);
 
-
         $directoryPath = storage_path('app/public/example-directory');
         // Check if the directory exists before attempting to delete it
-        if (File::exists($directoryPath))
-        {
+        if (File::exists($directoryPath)) {
             // Delete the directory and its contents
             File::deleteDirectory($directoryPath);
-        }
-        else
-        {
+        } else {
             // Directory does not exist
-            echo "Directory does not exist.";
+            echo 'Directory does not exist.';
         }
     }
 }
