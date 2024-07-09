@@ -23,7 +23,8 @@
         "livewire/livewire": "^3.0",
         "spatie/laravel-permission": "^5.0|^6.0",
         "laravel/jetstream": "^2.0|^3.0|^4.0",
-        "lab404/laravel-impersonate": "^1.7"
+        "lab404/laravel-impersonate": "^1.7",
+        "orangehill/iseed": "^3.0"
     },
     "extra": {
         "laravel": {

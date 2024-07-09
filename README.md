@@ -165,18 +165,18 @@ Sensy/Scrud is open-source software licensed under the [MIT license](LICENSE.md)
 
 ### TODO
 
-- Paginations on views
-- Enhance Logging
-- Add requirement (iseed)
-- Decimal Validation rule enhancement
-- Login Page
-- Dynamic Way of declaring logo
-- System Configurations(Logo, System Name,etc)
-- Unique costraint fix in the scafold of controllers
-- Place validation vertically for cleaner code
-- Published Views are not working
-- Menu Search
-- Configs (Input driver)
-- File input locally
-- Disable Success/Error messages
-- Add helper into the package
+- [x] Paginations on views
+- [ ] Enhance Logging
+- [x] Add requirement (iseed)
+- [ ] Decimal Validation rule enhancement
+- [x] Login Page
+- [x] Dynamic Way of declaring logo
+- [ ] System Configurations(Logo, System Name,etc)
+- [ ] Unique costraint fix in the scafold of controllers
+- [ ] Place validation vertically for cleaner code
+- [ ] Published Views are not working
+- [ ] Menu Search
+- [ ] Configs (Input driver)
+- [ ] File input locally
+- [ ] Disable Success/Error messages
+- [ ] Add helper into the package

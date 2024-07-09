@@ -7,6 +7,7 @@ use Illuminate\Console\Command;
 class Install extends Command
 {
     public $layout_path;
+
     /**
      * The name and signature of the console command.
      *
@@ -19,7 +20,7 @@ class Install extends Command
      *
      * @var string
      */
-    protected $description = 'Install the Crud';
+    protected $description = 'Install the Scrud By Sensy';
 
     /**
      * Execute the console command.
@@ -30,16 +31,8 @@ class Install extends Command
 
         $this->call('vendor:publish', ['--tag' => 'scrud', '--force' => true]);
 
-//        # Rename the namespace
-//        foreach (glob(__DIR__ . '/../View/Components/*.php') as $file) {
-//            //get file
-//            # open file
-//            $file_content = file_get_contents($file);
-//            //replace namespace
-//            $file_content = str_replace('Sensy\Scrud\View\Components', 'App\Scrud\View', $file_content);
-//            //save file
-//            file_put_contents($layout_path . '/' . basename($file), $file_content);
-//        }
+        //settup the system dependencies
+        $this->call('s-crud:crud', ['--dependency-only' => true]);
 
     }
 }
